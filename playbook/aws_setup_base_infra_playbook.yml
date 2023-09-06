@@ -176,13 +176,13 @@
  
 ### Using the `cloudwatchlogs_log_group` module to create a log group to hosts
 ### all the logs from our application layer
-    - name: Creating CloudWatch log group
-      amazon.aws.cloudwatchlogs_log_group:
-        log_group_name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
-        region: "{{ global_var_region }}"
-        retention: 30
-        tags:
-          Name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
-          ENV: "{{ global_var_environment }}"
-      register: reg_cloudwatch_log_group_info
-      when: aws_setup_base_cloudwatch_log_group_create | default(true)
+#    - name: Creating CloudWatch log group
+#      amazon.aws.cloudwatchlogs_log_group:
+#        log_group_name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
+#        region: "{{ global_var_region }}"
+#        retention: 30
+#        tags:
+#          Name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
+#          ENV: "{{ global_var_environment }}"
+#      register: reg_cloudwatch_log_group_info
+#      when: aws_setup_base_cloudwatch_log_group_create | default(true)
