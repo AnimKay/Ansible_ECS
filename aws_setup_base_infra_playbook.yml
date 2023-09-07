@@ -1,13 +1,13 @@
 ---
-#- name: Importing Fact Gatherer playbook
-#  ansible.builtin.import_playbook: aws_setup_fact_gatherer_playbook.yml
+- name: Importing Fact Gatherer playbook
+  ansible.builtin.import_playbook: aws_setup_fact_gatherer_playbook.yml
 
-#- name: Execute Ansible from localhost using aws python sdk
-#  hosts: localhost
-#  gather_facts: true
-#  vars_files:
-#    - playbook_vars/{{ global_var_environment }}/aws_setup_base_infra_vars.yml
-#  tasks:
+- name: Execute Ansible from localhost using aws python sdk
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - playbook_vars/{{ global_var_environment }}/aws_setup_base_infra_vars.yml
+  tasks:
  
 ### Using the module `ec2_vpc_net` to create the vpc using variables
 ### from the global variables with tags when the variable aws_setup_base_vpc_create
@@ -174,13 +174,13 @@
  
 ### Using the `cloudwatchlogs_log_group` module to create a log group to hosts
 ### all the logs from our application layer
-#    - name: Creating CloudWatch log group
-#      amazon.aws.cloudwatchlogs_log_group:
-#        log_group_name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
-#        region: "{{ global_var_region }}"
-#        retention: 30
-#        tags:
-#          Name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
-#          ENV: "{{ global_var_environment }}"
-#      register: reg_cloudwatch_log_group_info
-#      when: aws_setup_base_cloudwatch_log_group_create | default(true)
+    - name: Creating CloudWatch log group
+      amazon.aws.cloudwatchlogs_log_group:
+        log_group_name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
+        region: "{{ global_var_region }}"
+        retention: 30
+        tags:
+          Name: "{{ global_var_project }}-{{ global_var_environment }}-{{ global_var_cloudwatch_loggroup_sufx }}"
+          ENV: "{{ global_var_environment }}"
+      register: reg_cloudwatch_log_group_info
+      when: aws_setup_base_cloudwatch_log_group_create | default(true)
